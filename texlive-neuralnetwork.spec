@@ -6,7 +6,7 @@
 # catalog-version 1.0
 Name:		texlive-neuralnetwork
 Version:	1.0
-Release:	4
+Release:	5
 Summary:	Graph-drawing for neural networks
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/graphics/pgf/contrib/neuralnetwork
