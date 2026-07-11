@@ -1,44 +1,21 @@
-Name:		texlive-neuralnetwork
-Version:	31500
-Release:	2
+%global tl_name neuralnetwork
+%global tl_revision 31500
+
+Name:		texlive-%{tl_name}
+Epoch:		1
+Version:	1.0
+Release:	%{tl_revision}.1
 Summary:	Graph-drawing for neural networks
 Group:		Publishing
 URL:		https://www.ctan.org/tex-archive/graphics/pgf/contrib/neuralnetwork
-License:	GPL
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/neuralnetwork.r%{version}.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/neuralnetwork.doc.r%{version}.tar.xz
+License:	gpl
+Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/neuralnetwork.r%{tl_revision}.tar.xz
+Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/neuralnetwork.doc.r%{tl_revision}.tar.xz
 BuildArch:	noarch
-BuildRequires:	texlive-tlpkg
-Requires(pre):	texlive-tlpkg
-Requires(post):	texlive-kpathsea
+BuildSystem:	texlive
+Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
-The package provides facilities for graph-drawing, with
-facilities designed for neural network diagrams.
+The package provides facilities for graph-drawing, with facilities
+designed for neural network diagrams.
 
-%post
-%{_sbindir}/texlive.post
-
-%postun
-if [ $1 -eq 0 ]; then
-	%{_sbindir}/texlive.post
-fi
-
-#-----------------------------------------------------------------------
-%files
-%{_texmfdistdir}/tex/latex/neuralnetwork/neuralnetwork.sty
-%doc %{_texmfdistdir}/doc/latex/neuralnetwork/examples/neural-networks-ebook.pdf
-%doc %{_texmfdistdir}/doc/latex/neuralnetwork/examples/neuralnetwork.pdf
-%doc %{_texmfdistdir}/doc/latex/neuralnetwork/examples/neuralnetwork.tex
-%doc %{_texmfdistdir}/doc/latex/neuralnetwork/examples/xor.pdf
-%doc %{_texmfdistdir}/doc/latex/neuralnetwork/examples/xor.tex
-
-#-----------------------------------------------------------------------
-%prep
-%autosetup -p1 -c -a1
-
-%build
-
-%install
-mkdir -p %{buildroot}%{_texmfdistdir}
-cp -fpar tex doc %{buildroot}%{_texmfdistdir}
